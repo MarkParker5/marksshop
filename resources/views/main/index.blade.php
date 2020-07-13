@@ -1,73 +1,104 @@
 @extends('mainlayouts.main')
 
-
-
 @section('title')
-	Test
+	Home Page
 @endsection
 
 @section('content')
 
-	{{-- <h1>{{ $title }} {!! $subtitle !!}</h1>
 
 
-	@php
-		echo time();
-	@endphp
-	 
-	<hr>
+{{--		 SLIDER			--}}
+<div class="sliders">
+	<div class="arrow"></div>
+	<div class="arrow"></div>
+	<div class="window">
+		<div class="thumbs">
+			@foreach($slides as $slide)
+				<a href="{{ $slide->slug }}">
+					<img class="slider-img" src="{{ $slide->img }}"/>
+				</a>
+			@endforeach
+		</div>
+	</div>
+	<div class="points">
+		@for($i = 0; $i < count($slides); $i++)
+			<div{{ $i ? '' : ' class=active'}}></div>
+		@endfor
+	</div>
+</div>
 
-	@foreach($users as $u)
-		{{ $loop->iteration }}.{{ $u }} <br>
-	@endforeach
-
-	<hr>
-
-	<pre>
-		@json($users, JSON_PRETTY_PRINT)
-	</pre> --}}
 
 
-	<div class="container">
-		<h2 class="text-center">Categories</h2>
-		<div class="row">
-			@foreach($categories as $category)
-				<div class="col-3 text-center mt-3">
-					<div class="border">
-						<a href="/category/{{ $category->slug }}">
-							<img src="{{ $category->img }}" alt="" class="img-fluid">
-							<p>{{ $category->name }} ({{ $category->products->count() }}) </p>
+{{--		 CATEGORY TILES			--}}
+<h2 class="table-name">Categories</h2>
+<table class="categories">
+	<tbody>
+		<tr class="tiles-tr">
+			@for($i = 0; $i < 2; $i++)
+				<td class="tiles-td-sq">
+					<div class="tile" style="background-image: url({{ $categories[$i]->img }});">
+						<a href="/category/{{ $categories[$i]->slug }}">
+							<div class="tile-text">
+								<h2>{{ $categories[$i]->name }}</h2>
+							</div>
 						</a>
 					</div>
-				</div>	
-			@endforeach
-		</div>
-	</div>
+				</td>
+			@endfor
+		</tr>
+	</tbody>
+</table>
 
-	<br>
+{{-- 		RECOMENDED PRODUCT TILES 		--}}
+<h2 class="table-name">Products</h2>
+<table class="second-table">
+	<tbody>
+		<tr class="tiles-tr">
+			<td class="tiles-td" rowspan="2">
+				<div class="tile" style="background-image: url({{ $products[0]->img }});">
+					<a href="/product/{{ $products[0]->slug }}">
+						<div class="tile-text">
+							<h2>{{ $products[0]->slug }}</h2>
+						</div>
+					</a>
+				</div>
+			</td>
+			<td class="tiles-td">
+				<div class="tile" style="background-image: url({{ $products[1]->img }});">
+					<a href="/products/{{ $products[1]->slug }}">
+						<div class="tile-text">
+							<h2>{{ $products[1]->slug }}</h2>
+						</div>
+					</a>
+				</div>
+			</td>
+		</tr>
+		<tr class="tiles-tr">
+			<td class="tiles-td">
+				<div class="tile" style="background-image: url({{ $products[2]->img }});">
+					<a href="/products/{{ $products[2]->slug }}">
+						<div class="tile-text">
+							<h2>{{ $products[2]->slug }}</h2>
+						</div>
+					</a>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
 
-	<div class="container">
-		<h2 class="text-center">Products</h2>
-		<div class="row">
-			@foreach($products as $product)
-				<div class="col-3 text-center mt-3">
-					@include('shop._product')
-				</div>	
-			@endforeach
-		</div>
-	</div>
 
-	<hr>
 
-	<div class="container">
+{{--		 REVIEWS		--}}
+<h2 class="text-center">Reviews</h2>
+<div class="container">
+	<div class="reviews">
 		@foreach($reviews as $review)
-			<div class="my-2 border mt-5">
-				<h5>{{ $review->product->name }}</h5>
-				{{ $review->review }} <hr>
-				<strong>-{{ $review->user->name }} </strong>
-				{{ $review->updated_at }} 
-			</div>
-		@endforeach()
+			@include('main._review')
+		@endforeach
 	</div>
+</div>
 
+<script src="{{asset("/js/app.js")}}"></script>
 @endsection

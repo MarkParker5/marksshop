@@ -1,1 +1,227 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+$main-text-color: 	#454545;
+$main-bg: 			#fff;
+$reviews-bg: 		#B4F2FF;
+$footer-bg: 		#F5F5F5;
+
+/*	------------	RESET	------------	*/
+*{
+  font-family: roboto, sans-serif;
+  color: $main-text-color;
+}
+body{
+	background-color: $main-bg;
+}
+a{
+  text-decoration: none;
+}
+
+
+
+/*	------------	HEADER	------------	*/
+header, header *{
+	background-color: $main-bg;
+}
+header nav{
+	.nav-item{
+		font-size: 1.4em!important;
+	}
+	.navbar-brand{
+		font-size: 1.6em!important;
+	}
+	a.nav-link{
+		padding: 0;
+	}
+	.navbar-toggler{
+		border: none;
+	}
+}
+header .container{
+	padding: 2vh 0;
+}
+
+
+
+/*	------------	FOOTER	------------	*/
+body{
+	min-height: 100vh;
+}
+footer{
+	width: 100%;
+	padding: 5vh;
+	background-color: $footer-bg;
+	*{
+		margin: auto;
+	}
+}
+
+
+
+/*	------------	SLIDER	------------	*/
+.sliders{
+  text-align: center;
+  width: 100%;
+  background-color: #000d;
+  position: relative;
+
+	.arrow{
+		position: absolute;
+		top: 50%;
+		border-color: #fff;
+		border-top: 5px solid #fff;
+		border-right: 5px solid #fff;
+		width: 3.5vw;
+		height: 3.5vw;
+		font-size: 4em;
+		transition: 0.2s;
+		z-index: 10;
+		&:hover{
+			border-top: 10px solid #fff;
+			border-right: 10px solid #fff;
+		}/*:hover*/
+		&:first-child{
+			transform: rotate(225deg);
+			left: 1vw;
+		}/*first-child*/
+		&:nth-child(2){
+			transform: rotate(45deg);
+			right: 1vw;
+		}/*nth-child(2)*/
+	}/*.arrow*/
+	.window{
+		width: 90vw; 
+		height: 50vw; 
+		overflow: hidden;
+		margin: 0 auto;
+		margin-bottom: 100px;
+		position: relative;
+		.thumbs{
+			width: 8000px;
+			height: 100%;
+			position: absolute;
+			top: 0; 
+			left: 0;
+			img{
+				width: 90vw;
+				height: auto;
+				float: left;
+			}/*img*/
+		}/*.thumbs*/
+	}/*.window*/
+	.points{
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		bottom: 0;
+		*{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			border: 1px solid #ccc;
+			display: inline-block;
+			margin: 0 15px;
+		}/*.points * */
+		.active{
+			background-color: #fff;
+		}/*.active*/
+	}/*.points*/
+}/*.sliders*/
+ 
+
+
+/*	------------	TILES	------------	*/
+.table-name{
+  text-align: center;
+  font-size: 2em;
+}
+table{
+  text-align: center;
+  margin: auto;
+  margin-bottom: 100px;
+  height: auto;
+  border: none;
+	.tiles-td{
+	  position: relative;
+	  width: 40vw;
+	  height: 20vw;   
+	  padding: 3px;
+	}/*.tiles-td*/
+	.tiles-td-sq{
+	  position: relative;
+	  width: 40vw;
+	  height: 40vw;   
+	  padding: 3px;
+	}/*.tiles-td-sq*/
+	.tile{
+	    width: 100%;
+	    height: 100%;
+	    background-size: /*100%*/ cover;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    text-align: center;
+	    transition: 0.4s;
+	    display: block;
+	    &:hover{
+			box-shadow: 0 0 20px #0005;
+			/*transform: scale(1.05);*/
+		}/*:hover*/
+		a{
+			text-decoration: none;
+			}/*a*/
+	}/*.tile*/
+	.tile-text{
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0, 0, 0, 0.2);
+	    color: #fff !important;
+	    text-align: center;
+	    transition: 0.4s;
+	    opacity:1;
+		margin: auto;
+	    h2{
+	        font-size: 2em;
+	      	color: #fff !important;
+	        
+	    }
+	    &:hover{
+	        opacity:0;
+	    }
+	}/*.tile-text*/
+}/*table*/
+
+
+/*	------------	REVIEWS 	------------	*/
+.reviews{
+	.review{
+		border-radius: 15px;
+		position: relative;
+		padding: 20px 30px;
+		margin: 40px;
+		background-color: $reviews-bg;
+		.photo{
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			background-color: #aaa;
+			background-image: url(https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png), url(http://lorempixel.com/100/100);
+			background-size: cover;
+			position: absolute;
+			top: -35px;
+			left: -35px;
+			border: 5px solid $main-bg;
+		}
+		.text{
+			a{
+				color: inherit;
+			}/*a*/
+		}/*text*/
+	}/*.reviev*/
+}/*.reviews*/

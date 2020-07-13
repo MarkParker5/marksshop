@@ -17,9 +17,25 @@ class MainController extends Controller{
         dd($product->category->name);*/
 
     	$categories = Category::all();
-    	$products = Product::where('recomended', 1)->get();
-        $reviews = Review::orderBy('updated_at')->take(5)->get();
-    	return view('main.index', compact('categories', 'products', 'reviews') );
+    	$products   = Product::where('recomended', 1)->get();
+        $reviews    = Review::orderBy('updated_at')->take(5)->get();
+        $slides     = [];
+        $slides[]   = new class{
+            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $name = "Lorem"; 
+            public $slug = "slider-link"; 
+        };
+        $slides[]   = new class{
+            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $name = "Lorem"; 
+            public $slug = "slider-link"; 
+        };
+        $slides[]   = new class{
+            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $name = "Lorem"; 
+            public $slug = "slider-link"; 
+        };
+    	return view('main.index', compact('categories', 'products', 'reviews', 'slides') );
     }
     public function category(string $slug){
     	$category = Category::firstWhere('slug', $slug);
@@ -28,7 +44,7 @@ class MainController extends Controller{
     }
     public function product(string $slug){
         $product = Product::firstWhere('slug', $slug);
-        $reviews = Review::where('product_id', $product->id)->get();
+        $reviews = Review::where('product_id', $product->id)->get(); 
         return view('shop.product', compact('product', 'reviews') );
     }
 }
