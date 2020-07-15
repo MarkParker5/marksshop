@@ -19,6 +19,7 @@ $footer-bg: 		#F5F5F5;
 }
 body{
 	background-color: $main-bg;
+	padding-bottom: 20vh;
 }
 a{
   text-decoration: none;
@@ -53,11 +54,14 @@ header .container{
 /*	------------	FOOTER	------------	*/
 body{
 	min-height: 100vh;
+	position: relative;
 }
 footer{
 	width: 100%;
 	padding: 5vh;
 	background-color: $footer-bg;
+	position: absolute;
+	bottom: 0;
 	*{
 		margin: auto;
 	}

@@ -66,7 +66,7 @@
 			</td>
 			<td class="tiles-td">
 				<div class="tile" style="background-image: url({{ $products[1]->img }});">
-					<a href="/products/{{ $products[1]->slug }}">
+					<a href="/product/{{ $products[1]->slug }}">
 						<div class="tile-text">
 							<h2>{{ $products[1]->slug }}</h2>
 						</div>
@@ -77,7 +77,7 @@
 		<tr class="tiles-tr">
 			<td class="tiles-td">
 				<div class="tile" style="background-image: url({{ $products[2]->img }});">
-					<a href="/products/{{ $products[2]->slug }}">
+					<a href="/product/{{ $products[2]->slug }}">
 						<div class="tile-text">
 							<h2>{{ $products[2]->slug }}</h2>
 						</div>

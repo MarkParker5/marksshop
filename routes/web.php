@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/', 'MainController@index');
+Route::get('/shop', 'MainController@shop');
 Route::get('/category/{slug}', 'MainController@category');
 Route::get('/product/{slug}', 'MainController@product');
+Route::post('/product/{slug}', 'MainController@getReview');
 
 Auth::routes();
 

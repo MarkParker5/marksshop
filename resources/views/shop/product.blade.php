@@ -20,14 +20,30 @@
 				<br>
 			</div>
 		</div>
-		<div>
-			@foreach($reviews as $review)
-				<div class="my-2 border mt-5">
-					{{ $review->review }} <hr>
-					<strong> -{{ $review->user->name }} </strong>
-					{{ $review->updated_at }} 
-				</div>
-			@endforeach()
+		<hr>
+		@guest
+		@else
+			<div>
+				<h3>Add Review</h3>
+				<form action="/product/{{$product->slug}}" method="POST">
+					@csrf
+					<input type="hidden" name="product_id" value="{{$product->id}}">
+					<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+					<div class="form-group col-8">
+						<textarea name="comment" id="" cols="30" rows="10" class="form-control"></textarea>
+						<button class="btn btn-primary float-right px-4">Send</button>
+					</div>
+				</form>
+			</div>
+		@endguest
+		{{--		 REVIEWS		--}}
+		<h2 class="text-center">Reviews</h2>
+		<div class="container">
+			<div class="reviews">
+				@foreach($reviews as $review)
+					@include('main._review')
+				@endforeach
+			</div>
 		</div>
 	</div>
 

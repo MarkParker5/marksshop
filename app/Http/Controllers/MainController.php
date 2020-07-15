@@ -15,10 +15,16 @@ class MainController extends Controller{
 
         /*$product = Product::find(1);
         dd($product->category->name);*/
+        
 
-    	$categories = Category::all();
-    	$products   = Product::where('recomended', 1)->get();
-        $reviews    = Review::orderBy('updated_at')->take(5)->get();
+        // $categories = Category::all();
+    	$categories = Category::with('products')->get();
+        //$products   = Product::where('recomended', 1)->get();
+    	$products   = Product::with('category')->where('recomended', 1)->get();
+
+        $reviews    = Review::orderBy('updated_at', 'desc')->take(5)->get();
+
+        // need to add slider to the database
         $slides     = [];
         $slides[]   = new class{
             public $img  = "http://loremflickr.com/1920/1080/"; 
@@ -35,7 +41,16 @@ class MainController extends Controller{
             public $name = "Lorem"; 
             public $slug = "slider-link"; 
         };
+        // end of slides data
+
     	return view('main.index', compact('categories', 'products', 'reviews', 'slides') );
+    }
+    public function shop(){
+        // $categories = Category::all();
+        $categories = Category::with('products')->get();
+        $products   = Product::with('category')->where('recomended', 1)->get();
+        $reviews    = Review::orderBy('updated_at', 'desc')->take(5)->get();
+        return view('shop.index', compact('categories', 'products', 'reviews') );
     }
     public function category(string $slug){
     	$category = Category::firstWhere('slug', $slug);
@@ -44,8 +59,17 @@ class MainController extends Controller{
     }
     public function product(string $slug){
         $product = Product::firstWhere('slug', $slug);
-        $reviews = Review::where('product_id', $product->id)->get(); 
+        $reviews = Review::where('product_id', $product->id)->orderBy('updated_at', 'desc')->get(); 
         return view('shop.product', compact('product', 'reviews') );
+    }
+    public function getReview(Request $request){
+        $review = new Review();
+        $review->review     = $request->comment;
+        $review->user_id    = $request->user_id;        // XD
+        $review->product_id = $request->product_id;
+        $review->save();
+        return back();
+        //header('Location: ' . $_SERVER['referer']); die();
     }
 }
 
