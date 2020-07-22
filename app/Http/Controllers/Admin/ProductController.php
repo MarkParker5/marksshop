@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
+use App\Http\Requests\StoreProduct;
 
 class ProductController extends Controller
 {
@@ -23,9 +25,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        $categories = Category::all();
+        return view('admin.product.create', compact('categories') );
     }
 
     /**
@@ -34,9 +36,30 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreProduct $request){
+        // $validatedData = $request->validate([
+        //     'name' => 'required|unique:categories|max:64',
+        //     'slug' => 'required|unique:categories|max:128',
+        //     'img'  => 'nullable|mimes:jpeg,png,bmp,gih',
+        // ]);
+
+        $product              = new Product();
+        $product->name        = $request->name;
+        $product->slug        = $request->slug;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+        $product->price       = $request->price;
+        $product->recomended  = $request->recomended ?? 0;
+
+        $file = $request->file('img');
+        if($file){
+            $fName = $file->getClientOriginalName();
+            $file->move( public_path('uploads'), $fName );
+            $product->img = '/uploads/'.$fName;
+        }
+        
+        $product->save();
+        return redirect('/admin/product')->with('success', 'Product ' . $product->name . ' added!');
     }
 
     /**

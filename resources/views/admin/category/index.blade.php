@@ -3,10 +3,13 @@
 @section('title', 'Categories')
 
 @section('content_header')
-    <h1>Categories</h1>
+    <h1>Categories <br>
+      <small><a href="/admin/category/create">Add new category</a></small>
+    </h1>
 @stop
 
 @section('content')
+    @include('admin._messages')
    	<table class="table">
    		<thead>
    			<tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
@@ -24,9 +25,8 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('admin.category.create');
     }
 
     /**
@@ -35,9 +35,26 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StoreCategory $request){
+        // $validatedData = $request->validate([
+        //     'name' => 'required|unique:categories|max:64',
+        //     'slug' => 'required|unique:categories|max:128',
+        //     'img'  => 'nullable|mimes:jpeg,png,bmp,gih',
+        // ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->slug = $request->slug;
+
+        $file = $request->file('img');
+        if($file){
+            $fName = $file->getClientOriginalName();
+            $file->move( public_path('uploads'), $fName );
+            $category->img = '/uploads/'.$fName;
+        }
+        
+        $category->save();
+        return redirect('/admin/category')->with('success', 'Category ' . $category->name . ' added!');
     }
 
     /**
@@ -84,4 +101,5 @@ class CategoryController extends Controller
     {
         //
     }
+
 }
