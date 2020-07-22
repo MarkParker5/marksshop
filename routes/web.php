@@ -17,11 +17,25 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 
+//Main
 Route::get('/', 'MainController@index');
 Route::get('/shop', 'MainController@shop');
 Route::get('/category/{slug}', 'MainController@category');
 Route::get('/product/{slug}', 'MainController@product');
+
 Route::post('/product/{slug}', 'MainController@getReview');
+
+//Admin
+Route::group([
+	'prefix' => '/admin',
+	'namespace' => 'Admin',
+	'middleware'=> ['auth', 'admin'],
+	], function(){
+		Route::get('/', 'AdminController@index');
+		Route::resource('/category', 'CategoryController');
+		Route::resource('/product',   'ProductController');
+});
+
 
 Auth::routes();
 
