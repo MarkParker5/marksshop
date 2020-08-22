@@ -79,9 +79,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $product    = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.product.edit', compact('product', 'categories'));
     }
 
     /**
@@ -91,9 +92,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+        $product              = Product::findOrFail($id);
+        $product->name        = $request->name;
+        $product->slug        = $request->slug;
+        $product->description = $request->description;
+        $product->category_id = $request->category;
+        $product->price       = $request->price;
+        $product->recomended  = $request->recomended ?? 0;
+
+        $file = $request->file('img');
+        if($file){
+            $fName = $file->getClientOriginalName();
+            $file->move( public_path('uploads'), $fName );
+            $product->img = '/uploads/'.$fName;
+        }
+        
+        $product->save();
+        return redirect('/admin/product')->with('success', 'Product "' . $product->name . '" edited!');
     }
 
     /**
@@ -102,8 +118,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+        Product::find($id)->delete();
+        return back();
     }
 }

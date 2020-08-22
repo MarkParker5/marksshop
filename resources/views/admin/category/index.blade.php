@@ -27,7 +27,15 @@
     				<td><img src="{{ $category->img }}" alt="{{ $category->name }}" width="50px"/></td>
     				<td>{{ $category->name }}</td>
     				<td>{{ $category->slug }}</td>
-    				<td></td>
+    				<td>
+                <a href="/admin/category/{{$category->id}}/edit" class="btn btn-warning">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <form action="/admin/category/{{$category->id}}" method="POST">
+                  @csrf @method('DELETE') 
+                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                </form>    
+            </td>
     			</tr>
    			@endforeach
    		</tbody>

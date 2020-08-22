@@ -11,8 +11,7 @@ class StoreCategory extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize(){
         return true;
     }
 
@@ -21,12 +20,19 @@ class StoreCategory extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
-            'name' => 'required|unique:categories|max:64',
-            'slug' => 'required|unique:categories|max:128',
+            'name' => 'required|unique:categories,name,'.$this->category.'|max:64',
+            'slug' => 'nullable|unique:categories,slug,'.$this->category.'|max:128',
             'img'  => 'nullable|mimes:jpeg,png,bmp,gih',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'name.required' => 'Name is required',
+            'name.unique'   => 'Category already exists',
+            'name.max'      => 'Name to long. Up to 64 characters allowed',
         ];
     }
 }
