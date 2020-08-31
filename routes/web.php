@@ -18,12 +18,22 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 //Main
-Route::get('/', 'MainController@index');
-Route::get('/shop', 'MainController@shop');
-Route::get('/category/{slug}', 'MainController@category');
-Route::get('/product/{slug}', 'MainController@product');
+	 //get
+Route::get('/', 				'MainController@index');
+Route::get('/shop', 			'MainController@shop');
+Route::get('/category/{slug}',  'MainController@category');
+Route::get('/product/{slug}',   'MainController@product');
 
-Route::post('/product/{slug}', 'MainController@getReview');
+Route::post('/product/{slug}',  'MainController@getReview');
+
+	 //cart
+
+Route::post('/cart/add', 		'CartController@add');
+Route::post('/cart/clear', 		'CartController@clear');
+Route::post('/cart/delete', 	'CartController@delete');
+
+Route::get('/checkout', 	'CartController@checkout');
+Route::get('/end-checkout', 	'CartController@endCheckout');
 
 //Admin
 Route::group([

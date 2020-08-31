@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+@include('admin._messages')
 
 {{--		 SLIDER			--}}
 <div class="sliders">
@@ -100,5 +100,4 @@
 	</div>
 </div>
 
-<script src="{{asset("/js/app.js")}}"></script>
 @endsection

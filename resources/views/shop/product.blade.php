@@ -15,7 +15,12 @@
 				<h4>{{ $product->category->name ? "Category: {$product->category->name} " : ''  }}</h4>
 				<br>
 				<big>{{ $product->price }}$</big>
-				<form action="" class="mt-5"><button class="btn btn-primary" style="padding: 5px 30px">Buy</button></form>
+				<form action="/" class="mt-5 add-to-cart">
+					@csrf
+					<input type="number" name="qty" width="20px" value="1" min=1>
+					<input type="hidden" name="product_id" value="{{$product->id}}">
+					<button class="btn btn-primary" style="padding: 5px 30px">Add to cart</button>
+				</form>
 				<p class="mt-5">{{ $product->description }}</p>
 				<br>
 			</div>
@@ -46,5 +51,4 @@
 			</div>
 		</div>
 	</div>
-
 @endsection
