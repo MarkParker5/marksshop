@@ -34,15 +34,21 @@ header, header *{
 header nav{
 	.nav-item{
 		font-size: 1.4em!important;
+		padding: auto;
 	}
 	.navbar-brand{
 		font-size: 1.6em!important;
 	}
-	a.nav-link{
-		padding: 0;
-	}
 	.navbar-toggler{
 		border: none;
+	}
+	button{
+		/*padding: 6 20px!important;*/
+		font-size: 1.4em;
+		border: none;
+		width: auto;
+		height: auto;
+		margin: auto;
 	}
 }
 header .container{
@@ -102,7 +108,7 @@ footer{
 	}/*.arrow*/
 	.window{
 		width: 90vw; 
-		height: 50vw; 
+		height: 42vw; 
 		overflow: hidden;
 		margin: 0 auto;
 		margin-bottom: 100px;

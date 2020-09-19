@@ -50,13 +50,10 @@ class CartController extends Controller{
 
     	}
 
-    	//	sendmail
-    	// Mail::send('email.order', compact('order'), function($m){
-    	// 	$m->to('markitstep@gmail.com');
-    	// 	return $m;
-    	// });
-
-    	
+    	Mail::send('email.order', compact('order'), function($m){
+    		$m->to('markitstep@gmail.com');
+    		return $m;
+    	});
 
     	return redirect('/')->with('success', 'Thanks!');
     }

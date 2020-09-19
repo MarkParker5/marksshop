@@ -35,7 +35,7 @@
 <table class="categories">
 	<tbody>
 		<tr class="tiles-tr">
-			@for($i = 0; $i < 2; $i++)
+			@for($i = 0; $i < 2 && isset($categories[$i]); $i++)
 				<td class="tiles-td-sq">
 					<div class="tile" style="background-image: url({{ $categories[$i]->img }});">
 						<a href="/category/{{ $categories[$i]->slug }}">
@@ -50,6 +50,7 @@
 	</tbody>
 </table>
 
+@if(count($products) > 2)
 {{-- 		RECOMENDED PRODUCT TILES 		--}}
 <h2 class="table-name">Products</h2>
 <table class="second-table">
@@ -87,7 +88,7 @@
 		</tr>
 	</tbody>
 </table>
-
+@endif
 
 
 {{--		 REVIEWS		--}}

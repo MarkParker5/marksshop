@@ -27,20 +27,26 @@ class MainController extends Controller{
         // need to add slider to the database
         $slides     = [];
         $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $img  = "http://loremflickr.com/1920/900/"; 
             public $name = "Lorem"; 
             public $slug = "slider-link"; 
         };
         $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $img  = "http://loremflickr.com/1920/900/"; 
             public $name = "Lorem"; 
             public $slug = "slider-link"; 
         };
         $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/1080/"; 
+            public $img  = "http://loremflickr.com/1920/900/"; 
             public $name = "Lorem"; 
             public $slug = "slider-link"; 
         };
+
+        // $slides[]   = new class{
+        //     public $img        = "http://loremflickr.com/1920/900/"; 
+        //     public $name       = "Lorem"; 
+        //     public $product_id = 8; 
+        // };
         // end of slides data
 
     	return view('main.index', compact('categories', 'products', 'reviews', 'slides') );

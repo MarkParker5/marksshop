@@ -1,66 +1,73 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <!-- Required meta tags -->
+    {{-- Required meta tags --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    {{-- Bootstrap CSS --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <title> @yield('title') </title>
   </head>
   <body>
-
-
-
     <header>
       {{-- <div class="container"> --}}
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+
+          {{-- Left side of navbar --}}
           <a class="navbar-brand" href="{{ url('/') }}"><strong>{{ config('app.name', 'Mark`s Shop') }}</strong></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item {{Request::is('/') ? 'active' : ''}}">
                 <a class="nav-link" href="/">Home Page</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {{Request::is('shop') ? 'active' : ''}}">
                 <a class="nav-link" href="/shop">Shop</a>
               </li>
+               <li class="nav-item dropdown {{Request::is('category/*') || Request::is('product/*') ? 'active' : ''}}">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{!Request::is('shop') ? ($product->category->name ?? $category->name ?? 'Categories') : 'Categories'}}
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @foreach($categoriesNav as $category)
+                      <a class="dropdown-item" href="/category/{{$category->slug}}">{{$category->name}}</a>
+                    @endforeach
+                    {{-- <div class="dropdown-divider"></div> --}}
+                  </div>
+                </li>
             </ul>
 
-            {{-- <div class="nav-item">
-              <a href="/cart" class="nav-link"> Cart
-                <img src="" alt="">
-              </a>
-            </div> --}}
 
-            <ul class="navbar-nav ml-auto">
-              <li class="navbar-nav ml-auto p-1">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            {{-- Right side of navbar --}}
+            <ul class="navbar-nav">
+              <li class="navbar-nav">
+                <button type="button" class="nav-link" data-toggle="modal" data-target="#exampleModal" id="cart">
                   Cart
                 </button>
               </li>
-              <!-- Authentication Links -->
+             {{--  Authentication Links --}}
               @guest
-                  <li class="nav-item">
-                      <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
                   @if (Route::has('register'))
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
                   @endif
               @else
                   <li class="nav-item dropdown">
-                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"opup="true" aria-expanded="false" v-pre>
+                      <a id="navbarDropdownUser" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"opup="true" aria-expanded="false" v-pre>
                           {{ Auth::user()->name }} <span class="caret"></span>
                       </a>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownUser">
                           <a class="dropdown-item" href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -72,7 +79,7 @@
                       </div>
                   </li>
               @endguest
-                   </ul>
+              </ul>
           </div>
 
         </nav>
@@ -108,16 +115,18 @@
         </div>
       </div>
     </div>
-    <!-- Optional JavaScript -->
+
+
+    {{-- Optional JavaScript --}}
     
     <script src="{{asset("/js/app.js")}}"></script>
 
     {{-- Bootstrap --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   {{--  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> --}}
     {{-- /Bootstrap --}}
     
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {{-- jQuery first, then Popper.js, then Bootstrap JS --}}
   </body>
 </html>

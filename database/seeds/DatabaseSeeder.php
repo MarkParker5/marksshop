@@ -11,10 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(){
         // $this->call(UserSeeder::class);
-        factory(App\Category::class, 4)->create();
-        factory(App\Product::class, 180)->create();
-        factory(App\User::class, 10)->create();
-        factory(App\Review::class, 100)->create();
+        factory(App\Category::class, 0)->create();
+        factory(App\Product::class, 0)->create();
+        factory(App\User::class, 0)->create();
+        factory(App\Review::class, 0)->create();
     }
 }
 //> php artisan migrate:refresh --seed

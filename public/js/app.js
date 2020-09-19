@@ -37274,9 +37274,8 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //require('./navbar');
 
-__webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
 
 __webpack_require__(/*! ./cart */ "./resources/js/cart.js");
 
@@ -37369,24 +37368,6 @@ document.body.addEventListener('submit', function (e) {
       updateCart(responce.data);
     });
   }
-});
-
-/***/ }),
-
-/***/ "./resources/js/navbar.js":
-/*!********************************!*\
-  !*** ./resources/js/navbar.js ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// -----------------------------------------------------------
-// 							NAVBAR
-// -----------------------------------------------------------
-var button = document.querySelector('nav.navbar button[aria-controls="navbarSupportedContent"]');
-var navcollapse = document.querySelector('nav.navbar #navbarSupportedContent');
-button.addEventListener('click', function () {
-  if (navcollapse.classList.contains('collapse')) navcollapse.classList.remove('collapse');else navcollapse.classList.add('collapse');
 });
 
 /***/ }),

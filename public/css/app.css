@@ -10953,18 +10953,24 @@ header * {
 
 header nav .nav-item {
   font-size: 1.4em !important;
+  padding: auto;
 }
 
 header nav .navbar-brand {
   font-size: 1.6em !important;
 }
 
-header nav a.nav-link {
-  padding: 0;
-}
-
 header nav .navbar-toggler {
   border: none;
+}
+
+header nav button {
+  /*padding: 6 20px!important;*/
+  font-size: 1.4em;
+  border: none;
+  width: auto;
+  height: auto;
+  margin: auto;
 }
 
 header .container {
@@ -11035,7 +11041,7 @@ footer * {
 
 .sliders .window {
   width: 90vw;
-  height: 50vw;
+  height: 42vw;
   overflow: hidden;
   margin: 0 auto;
   margin-bottom: 100px;
