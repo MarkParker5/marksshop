@@ -1,0 +1,69 @@
+/*	------------	SLIDER	------------	*/
+.sliders{
+  text-align: center;
+  width: 100%;
+  background-color: #000d;
+  position: relative;
+
+	.arrow{
+		position: absolute;
+		top: 50%;
+		border-color: #fff;
+		border-top: 5px solid #fff;
+		border-right: 5px solid #fff;
+		width: 3.5vw;
+		height: 3.5vw;
+		font-size: 4em;
+		transition: 0.2s;
+		z-index: 10;
+		&:hover{
+			border-top: 10px solid #fff;
+			border-right: 10px solid #fff;
+		}/*:hover*/
+		&:first-child{
+			transform: rotate(225deg);
+			left: 1vw;
+		}/*first-child*/
+		&:nth-child(2){
+			transform: rotate(45deg);
+			right: 1vw;
+		}/*nth-child(2)*/
+	}/*.arrow*/
+	.window{
+		width: 90vw; 
+		height: 42vw; 
+		overflow: hidden;
+		margin: 0 auto;
+		margin-bottom: 100px;
+		position: relative;
+		.thumbs{
+			width: 8000px;
+			height: 100%;
+			position: absolute;
+			top: 0; 
+			left: 0;
+			img{
+				width: 90vw;
+				height: auto;
+				float: left;
+			}/*img*/
+		}/*.thumbs*/
+	}/*.window*/
+	.points{
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		bottom: 0;
+		*{
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			border: 1px solid #ccc;
+			display: inline-block;
+			margin: 0 15px;
+		}/*.points * */
+		.active{
+			background-color: #fff;
+		}/*.active*/
+	}/*.points*/
+}/*.sliders*/

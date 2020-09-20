@@ -10,7 +10,7 @@
 
 @section('content')
     @include('admin._messages')
-   	<table class="table">
+   	<table class="table text-center">
    		<thead>
    			<tr>
    				<th>ID</th>
@@ -19,11 +19,12 @@
    				<th>Name</th>
           <th>Slug</th>
           <th>Price</th>
+          <th>Tags</th>
    				<th>Recomended</th>
    				<th>Options</th>
    			</tr>
    		</thead>
-   		<tbody class="text-center">
+   		<tbody>
    			@foreach($products as $product)
           <tr>
     				<td>{{ $loop->iteration }}</td>
@@ -32,6 +33,7 @@
     				<td>{{ $product->name }}</td> 
             <td>{{ $product->slug }}</td>
             <td>{{ $product->price}}</td>
+            <td>{{ implode(', ', $product->tags()->pluck('name')->toArray()) }}</td>
     				<td>{{ $product->recomended ? '+' : ''}}</td>
     				<td>
                 <a href="/admin/product/{{$product->id}}/edit" class="btn btn-warning">

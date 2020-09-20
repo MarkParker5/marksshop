@@ -12,6 +12,9 @@
     <title> @yield('title') </title>
   </head>
   <body>
+
+    <div id="preloader"><div id="loader"></div></div>
+
     <header>
       {{-- <div class="container"> --}}
         <nav class="navbar navbar-expand-lg navbar-light shadow-sm">

@@ -6,36 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
+use App\Tag;
+use App\TagsProduct;
 use App\Http\Requests\StoreProduct;
 
-class ProductController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class ProductController extends Controller{
     public function index(){
         $products = Product::all();
         return view('admin.product.index', compact('products') );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(){
         $categories = Category::all();
-        return view('admin.product.create', compact('categories') );
+        $tags       = Tag::all();
+        return view('admin.product.create', compact('categories', 'tags') );
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreProduct $request){
         // $validatedData = $request->validate([
         //     'name' => 'required|unique:categories|max:64',
@@ -59,39 +43,19 @@ class ProductController extends Controller
         }
         
         $product->save();
+        $product->tags()->sync($request->tags);
         return redirect('/admin/product')->with('success', 'Product ' . $product->name . ' added!');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id){
         $product    = Product::findOrFail($id);
         $categories = Category::all();
-        return view('admin.product.edit', compact('product', 'categories'));
+        $tags       = Tag::all();
+        return view('admin.product.edit', compact('product', 'categories', 'tags'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id){
         $product              = Product::findOrFail($id);
         $product->name        = $request->name;
@@ -109,17 +73,13 @@ class ProductController extends Controller
         }
         
         $product->save();
+        $product->tags()->sync($request->tags);
         return redirect('/admin/product')->with('success', 'Product "' . $product->name . '" edited!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id){
-        Product::find($id)->delete();
+        $product = Product::find($id);
+        $product->tags()->detach();
+        $product->delete();
         return back();
     }
 }

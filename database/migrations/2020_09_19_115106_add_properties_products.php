@@ -11,9 +11,10 @@ class AddPropertiesProducts extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        //
+    public function up(){
+        Schema::table('products', function (Blueprint $table) {
+            $table->text('properties')->nullable();
+        });
     }
 
     /**
@@ -21,8 +22,7 @@ class AddPropertiesProducts extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down(){
         //
     }
 }

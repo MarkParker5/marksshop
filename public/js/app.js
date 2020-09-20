@@ -37274,6 +37274,8 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! ./preloader */ "./resources/js/preloader.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //require('./navbar');
 
 
@@ -37369,6 +37371,27 @@ document.body.addEventListener('submit', function (e) {
     });
   }
 });
+
+/***/ }),
+
+/***/ "./resources/js/preloader.js":
+/*!***********************************!*\
+  !*** ./resources/js/preloader.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+document.body.onload = function () {
+  setTimeout(function () {
+    var preloader = document.getElementById('preloader');
+
+    if (!preloader.classList.contains('done')) {
+      preloader.classList.add('done');
+    }
+
+    ;
+  }, 400);
+};
 
 /***/ }),
 

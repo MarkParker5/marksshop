@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
 use App\Review;
+use App\Slide;
 
 class MainController extends Controller{
     public function index(){
@@ -24,30 +25,7 @@ class MainController extends Controller{
 
         $reviews    = Review::orderBy('updated_at', 'desc')->take(5)->get();
 
-        // need to add slider to the database
-        $slides     = [];
-        $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/900/"; 
-            public $name = "Lorem"; 
-            public $slug = "slider-link"; 
-        };
-        $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/900/"; 
-            public $name = "Lorem"; 
-            public $slug = "slider-link"; 
-        };
-        $slides[]   = new class{
-            public $img  = "http://loremflickr.com/1920/900/"; 
-            public $name = "Lorem"; 
-            public $slug = "slider-link"; 
-        };
-
-        // $slides[]   = new class{
-        //     public $img        = "http://loremflickr.com/1920/900/"; 
-        //     public $name       = "Lorem"; 
-        //     public $product_id = 8; 
-        // };
-        // end of slides data
+        $slides = Slide::all();
 
     	return view('main.index', compact('categories', 'products', 'reviews', 'slides') );
     }

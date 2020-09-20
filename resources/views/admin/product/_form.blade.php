@@ -55,6 +55,17 @@
     @enderror
 </div>
 <div class="form-group">
+    <label for="tags">Tags</label>
+    <select class="form-control @error('tags') is-invalid @enderror" id="tags" name='tags[]' multiple="multiple">
+        @foreach ($tags as $tag)
+            <option value="{{$tag->id}}" {{isset($product) && in_array($tag->id, $product->tags->pluck('id')->toArray()) ? 'selected' : ''}}>{{$tag->name}}</option>
+        @endforeach
+    </select>
+    @error('category')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
     <label for="recomended">Recomended product</label>
     <input type="checkbox" class=" @error('recomended') is-invalid @enderror" id="recomended" name='recomended' value="1" width="10px" height="10px" {{isset($product) ? ($product->recomended ? 'checked' : '') : ''}}>
 

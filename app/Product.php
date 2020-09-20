@@ -17,4 +17,7 @@ class Product extends Model{
     public function getImgAttribute($value){
     	return empty($value) ? '/img/nophoto.png' : $value; 
     }
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'tags_products');
+    }
 }

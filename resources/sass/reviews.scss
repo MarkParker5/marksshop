@@ -1,0 +1,27 @@
+/*	------------	REVIEWS 	------------	*/
+.reviews{
+	.review{
+		border-radius: 15px;
+		position: relative;
+		padding: 20px 30px;
+		margin: 40px;
+		background-color: $reviews-bg;
+		.photo{
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			background-color: #aaa;
+			background-image: url(https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png), url(http://lorempixel.com/100/100);
+			background-size: cover;
+			position: absolute;
+			top: -35px;
+			left: -35px;
+			border: 5px solid $main-bg;
+		}
+		.text{
+			a{
+				color: inherit;
+			}/*a*/
+		}/*text*/
+	}/*.reviev*/
+}/*.reviews*/

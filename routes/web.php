@@ -44,6 +44,8 @@ Route::group([
 		Route::get('/', 'AdminController@index');
 		Route::resource('/category', 'CategoryController');
 		Route::resource('/product',   'ProductController');
+		Route::resource('/tag',  	  'TagController');
+		Route::resource('/slide',    'SliderController');
 });
 
 
