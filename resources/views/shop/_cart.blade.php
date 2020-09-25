@@ -3,11 +3,11 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Img</th>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Qty</th>
-				<th>Summ</th>
+				<th>Изображение</th>
+				<th>Название</th>
+				<th>Цена</th>
+				<th>Количество</th>
+				<th>Всего</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -23,14 +23,14 @@
 						<form class="product-delete">
 							@csrf
 							<input type="hidden" value="{{$product['id']}}" name="product_id">
-							<button class="btn btn-danger">Delete</button>
+							<button class="btn btn-link text-danger">Удалить</button>
 						</form>
 					</td>
 				</tr>
 			@endforeach
 			<tfoot>
             	<tr>
-                	<td colspan="4" class="text-right">Total Sum</td>
+                	<td colspan="4" class="text-right">Итог</td>
                 	<td colspan="2">{{session('totalSum')}}</td>
             	</tr>
         	</tfoot>
@@ -39,6 +39,6 @@
 
 @else
 
-	<p class="text-center">Your cart is empty</p>
+	<p class="text-center">Корзина пуста</p>
 
 @endif

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
-    <title> @yield('title') </title>
+    <title>@yield('title') • Marks Shop</title>
   </head>
   <body>
 
@@ -29,14 +29,14 @@
 
             <ul class="navbar-nav mr-auto">
               <li class="nav-item {{Request::is('/') ? 'active' : ''}}">
-                <a class="nav-link" href="/">Home Page</a>
+                <a class="nav-link" href="/">Главная</a>
               </li>
               <li class="nav-item {{Request::is('shop') ? 'active' : ''}}">
-                <a class="nav-link" href="/shop">Shop</a>
+                <a class="nav-link" href="/shop">Магазин</a>
               </li>
                <li class="nav-item dropdown {{Request::is('category/*') || Request::is('product/*') ? 'active' : ''}}">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{!Request::is('shop') ? ($product->category->name ?? $category->name ?? 'Categories') : 'Categories'}}
+                    {{!Request::is('shop') ? ($product->category->name ?? $category->name ?? 'Категории') : 'Категории'}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @foreach($categoriesNav as $category)
@@ -51,20 +51,14 @@
             {{-- Right side of navbar --}}
             <ul class="navbar-nav">
               <li class="navbar-nav">
-                <button type="button" class="nav-link" data-toggle="modal" data-target="#exampleModal" id="cart">
-                  Cart
+                <button type="button" class="nav-link fa-cart" data-toggle="modal" data-target="#exampleModal" id="cart">
                 </button>
               </li>
              {{--  Authentication Links --}}
               @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Вход') }}</a>
                     </li>
-                  @if (Route::has('register'))
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                  @endif
               @else
                   <li class="nav-item dropdown">
                       <a id="navbarDropdownUser" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"opup="true" aria-expanded="false" v-pre>
@@ -102,7 +96,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Корзина</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -111,9 +105,9 @@
             @include('shop._cart')
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <a class="btn btn-primary" href="/checkout">Checkout</a>
-            <button type="button" class="btn btn-danger clear-cart">Clear cart</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+            <a class="btn btn-primary" href="/checkout">Оформить заказ</a>
+            <button type="button" class="btn btn-danger clear-cart">Очистить корзину</button>
           </div>
         </div>
       </div>

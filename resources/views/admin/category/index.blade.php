@@ -3,37 +3,37 @@
 @section('title', 'Categories')
 
 @section('content_header')
-    <h1>Categories <br>
-      <small><a href="/admin/category/create">Add new category</a></small>
+    <h1>Категории <br>
+      <small><a href="/admin/category/create">Добавить категорию</a></small>
     </h1>
 @stop
 
 @section('content')
-    @include('admin._messages')
-   	<table class="table">
+   {{--  @include('admin._messages') --}}
+   	<table class="table text-center">
    		<thead>
    			<tr>
    				<th>ID</th>
-   				<th>Image</th>
-   				<th>Name</th>
-   				<th>Slug</th>
-   				<th>Options</th>
+   				<th>Изображение</th>
+   				<th>Название</th>
+   				<th>Ссылка</th>
+   				<th></th>
    			</tr>
    		</thead>
    		<tbody>
    			@foreach($categories as $category)
     			<tr>
-    				<td>{{ $loop->iteration }}</td>
+    				<td width="2%">{{ $loop->iteration }}</td>
     				<td><img src="{{ $category->img }}" alt="{{ $category->name }}" width="50px"/></td>
     				<td>{{ $category->name }}</td>
-    				<td>{{ $category->slug }}</td>
-    				<td>
-                <a href="/admin/category/{{$category->id}}/edit" class="btn btn-warning">
-                  <i class="fa fa-edit"></i>
+    				<td><a href="/category/{{ $category->slug }}">{{ $category->slug }}</a></td>
+    				<td class="text-right" width="5%">
+                <a href="/admin/category/{{$category->id}}/edit" class="btn btn-link text-warning">
+                  Редактировать
                 </a>
                 <form action="/admin/category/{{$category->id}}" method="POST">
                   @csrf @method('DELETE') 
-                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                  <button class="btn btn-link text-danger">Удалить</i></button>
                 </form>    
             </td>
     			</tr>

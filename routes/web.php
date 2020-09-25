@@ -32,7 +32,7 @@ Route::post('/cart/add', 		'CartController@add');
 Route::post('/cart/clear', 		'CartController@clear');
 Route::post('/cart/delete', 	'CartController@delete');
 
-Route::get('/checkout', 	'CartController@checkout');
+Route::get('/checkout', 		'CartController@checkout');
 Route::get('/end-checkout', 	'CartController@endCheckout');
 
 //Admin
@@ -42,10 +42,10 @@ Route::group([
 	'middleware'=> ['auth', 'admin'],
 	], function(){
 		Route::get('/', 'AdminController@index');
-		Route::resource('/category', 'CategoryController');
+		Route::resource('/category',  'CategoryController');
 		Route::resource('/product',   'ProductController');
 		Route::resource('/tag',  	  'TagController');
-		Route::resource('/slide',    'SliderController');
+		Route::resource('/slide',     'SliderController');
 });
 
 

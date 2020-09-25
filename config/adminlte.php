@@ -215,8 +215,8 @@ return [
     */
 
     'enabled_laravel_mix' => false,
-    'laravel_mix_css_path' => 'css/app.css',
-    'laravel_mix_js_path' => 'js/app.js',
+    'laravel_mix_css_path' => '/css/app.css',
+    'laravel_mix_js_path' => '/js/app.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -232,7 +232,7 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
+            'text' => 'поиск',
             'search' => true,
             'topnav' => true,
         ],
@@ -241,36 +241,36 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'CONTENT CONTROL'],
+        ['header' => 'МАГАЗИН'],
         [
-            'text'        => 'Categories',
+            'text'        => 'Категории',
             'url'         => 'admin/category',
             'icon'        => 'far fa-fw fa-file',
             'label'       => null,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Products',
+            'text'        => 'Продукты',
             'url'         => 'admin/product',
             'icon'        => 'far fa-fw fa-file',
             'label'       => null,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Tags',
+            'text'        => 'Теги',
             'url'         => 'admin/tag',
             'icon'        => 'far fa-fw fa-file',
             'label'       => null,
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Slider',
+            'text'        => 'Слайдер',
             'url'         => 'admin/slide',
             'icon'        => 'far fa-fw fa-file',
             'label'       => null,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        /*['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -334,7 +334,7 @@ return [
             'text'       => 'information',
             'icon_color' => 'cyan',
             'url'        => '#',
-        ],
+        ],*/
     ],
 
     /*

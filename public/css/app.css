@@ -10991,7 +10991,7 @@ a.text-dark:focus {
 }
 
 body {
-  background-color: #fff;
+  background-color: #f8fafc;
   padding-bottom: 20vh;
 }
 
@@ -10999,11 +10999,28 @@ a {
   text-decoration: none;
 }
 
+/*	------------	MAIN STYLES	------------	*/
+
+.btn-main {
+  border: 2px solid black;
+  width: auto;
+  height: 40px;
+  padding: 6px 15px !important;
+  border-radius: 0;
+  font-weight: bolder;
+}
+
+.btn-second {
+  background-color: #999fa3;
+  border-color: #8b9094;
+  color: #fff;
+}
+
 /*	------------	HEADER	------------	*/
 
 header,
 header * {
-  background-color: #fff;
+  background-color: #f8fafc;
 }
 
 header nav .nav-item {
@@ -11030,6 +11047,14 @@ header nav button {
 
 header .container {
   padding: 2vh 0;
+}
+
+.fa-cart {
+  background-image: url(/img/shoping_cart.png);
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
 /*	------------	FOOTER	------------	*/
@@ -11245,7 +11270,7 @@ table .tile-text:hover {
   position: absolute;
   top: -35px;
   left: -35px;
-  border: 5px solid #fff;
+  border: 5px solid #f8fafc;
 }
 
 .reviews .review .text {
@@ -11257,4 +11282,54 @@ table .tile-text:hover {
 }
 
 /*.reviews*/
+
+/*	------------	PRODUCT PAGE	------------	*/
+
+input.qty {
+  border: 1px solid black;
+  border-radius: 0;
+  width: 50px;
+  height: 40px;
+  margin-right: 15px;
+  font-size: 1.1em;
+  padding-left: 10px;
+}
+
+/*	------------	PRODUCT CARD	------------	*/
+
+.product-card {
+  background-color: #fff;
+  height: 375px;
+  /*min-width: 300px;*/
+  width: 25%;
+  box-sizing: content-box;
+}
+
+.product-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-card a .image {
+  height: 75%;
+  width: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  border-bottom: 1px solid #aaa;
+}
+
+.product-card a .info {
+  width: 100%;
+  height: 25%;
+  position: relative;
+}
+
+.product-card a .info .text {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
 

@@ -1,7 +1,7 @@
 @extends('mainlayouts.main')
 
 @section('title')
-	Home Page
+	Главная
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
 
 
 {{--		 CATEGORY TILES			--}}
-<h2 class="table-name">Categories</h2>
+<h2 class="table-name">Категории</h2>
 <table class="categories">
 	<tbody>
 		<tr class="tiles-tr">
@@ -52,7 +52,7 @@
 
 @if(count($products) > 2)
 {{-- 		RECOMENDED PRODUCT TILES 		--}}
-<h2 class="table-name">Products</h2>
+<h2 class="table-name">Рекомендованные</h2>
 <table class="second-table">
 	<tbody>
 		<tr class="tiles-tr">
@@ -92,13 +92,15 @@
 
 
 {{--		 REVIEWS		--}}
-<h2 class="text-center">Reviews</h2>
-<div class="container">
-	<div class="reviews">
-		@foreach($reviews as $review)
-			@include('main._review')
-		@endforeach
+@if($reviews->count())
+	<h2 class="text-center">Отзывы</h2>
+	<div class="container">
+		<div class="reviews">
+			@foreach($reviews as $review)
+				@include('main._review')
+			@endforeach
+		</div>
 	</div>
-</div>
+@endif
 
 @endsection

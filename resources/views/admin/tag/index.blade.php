@@ -3,35 +3,35 @@
 @section('title', 'Tags')
 
 @section('content_header')
-    <h1>Tags <br>
-      <small><a href="/admin/tag/create">Add new tags</a></small>
+    <h1>Теги<br>
+      <small><a href="/admin/tag/create">Добавить тег</a></small>
     </h1>
 @stop
 
 @section('content')
-    @include('admin._messages')
-   	<table class="table">
+    {{-- @include('admin._messages') --}}
+   	<table class="table text-center">
    		<thead>
    			<tr>
    				<th>ID</th>
-   				<th>Name</th>
-   				<th>Slug</th>
-   				<th>Options</th>
+   				<th>Название</th>
+   				<th>Ссылка</th>
+   				<th></th>
    			</tr>
    		</thead>
    		<tbody>
-   			@foreach($tags as $tags)
+   			@foreach($tags as $tag)
     			<tr>
-    				<td>{{ $loop->iteration }}</td>
-    				<td>{{ $tags->name }}</td>
-    				<td>{{ $tags->slug }}</td>
-    				<td>
-                <a href="/admin/tag/{{$tags->id}}/edit" class="btn btn-warning">
-                  <i class="fa fa-edit"></i>
+    				<td width="2%">{{ $loop->iteration }}</td>
+    				<td>{{ $tag->name }}</td>
+    				<td>{{ $tag->slug }}</td>
+    				<td class="text-right" width="5%">
+                <a href="/admin/tag/{{$tag->id}}/edit" class="btn btn-link text-warning">
+                  Редактировать
                 </a>
-                <form action="/admin/tag/{{$tags->id}}" method="POST">
+                <form action="/admin/tag/{{$tag->id}}" method="POST">
                   @csrf @method('DELETE') 
-                  <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                  <button class="btn btn-link text-danger">Удалить</i></button>
                 </form>    
             </td>
     			</tr>

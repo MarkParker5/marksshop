@@ -11,3 +11,19 @@ body{
 a{
   text-decoration: none;
 }
+
+/*	------------	MAIN STYLES	------------	*/
+
+.btn-main{
+	border: 2px solid black;
+	width: auto;
+	height: 40px;
+	padding: 6px 15px!important;
+	border-radius: 0;
+	font-weight: bolder;
+}
+.btn-second{
+	background-color: #999fa3;
+	border-color: #8b9094;
+    color: #fff;
+}

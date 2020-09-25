@@ -1,9 +1,12 @@
-<div class="border">
-	<a href="/product/{{ $product->slug }}">
-		@if($product->recomended) <div class="recomended" style="color:white; position: absolute; top:0; right:20px; font-size: 1.2em; background-color: #0005; font-weight: bolder;">Recomended</div> @endif
-		<img src="{{ $product->img }}" alt="" class="img-fluid">
-		<p>{{ $product->name }} ({{ $product->reviews->count() }} reviews)</p>
-		<p>{{ $product->price }}</p>
+<div class="text-center col-3 product-card p-2">
+	<a href="/product/{{ $product->slug }}"> 
+		<div class="image" style="background-image: url({{$product->img}})"></div>
+		<div class="info">
+			<div class="text">
+				<h4>{{ $product->name }}</h4>
+				<big>{{ $product->price }}</big>
+			</div>
+		</div>
 	</a>
 </div>
 

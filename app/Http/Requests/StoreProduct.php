@@ -33,4 +33,15 @@ class StoreProduct extends FormRequest
             'recomended'    => 'nullable|boolean',
         ];
     }
+
+    public function messages(){
+        return [
+            'name.required'   => 'Название обязательно',
+            'name.unique'     => 'Товар уже существует',
+            'name.max'        => 'Длина названия не должна превышать 64 символа',
+            'slug.unique'     => 'Ссылка уже существует',
+            'slug.max'        => 'Длина ссылки не должна превышать 64 символа',
+            'description.max' => 'Длина описания не должна превышать 256 символов',
+        ];
+    }
 }
