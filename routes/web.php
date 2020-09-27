@@ -23,6 +23,7 @@ Route::get('/', 				'MainController@index');
 Route::get('/shop', 			'MainController@shop');
 Route::get('/category/{slug}',  'MainController@category');
 Route::get('/product/{slug}',   'MainController@product');
+Route::get('/tag/{slug}',  		'MainController@tag');
 
 Route::post('/product/{slug}',  'MainController@getReview');
 

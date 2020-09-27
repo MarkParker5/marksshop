@@ -31,7 +31,7 @@
 				<br>
 				<div class="container">
 					<hr>
-					Категория: {{$product->category->name}}
+					Категория: <a href="/category/{{$product->category->slug}}"  class="text-main">{{$product->category->name}}</a>
 					<hr>
 					Метки: 
 						@foreach($product->tags as $tag)

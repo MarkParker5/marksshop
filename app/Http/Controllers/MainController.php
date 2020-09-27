@@ -7,6 +7,7 @@ use App\Category;
 use App\Product;
 use App\Review;
 use App\Slide;
+use App\Tag;
 
 class MainController extends Controller{
     public function index(){
@@ -54,6 +55,11 @@ class MainController extends Controller{
         $review->save();
         return back();
         //header('Location: ' . $_SERVER['referer']); die();
+    }
+    public function tag(string $slug){
+        $tag = Tag::where('slug', $slug)->first();
+        $products = $tag->products;
+        return view('shop.tag', compact('tag', 'products') );
     }
 }
 
