@@ -4,7 +4,7 @@
 		<div class="info">
 			<div class="text">
 				<h4>{{ $product->name }}</h4>
-				<big>{{ $product->price }}</big>
+				<big>{{ $product->price }} грн</big>
 			</div>
 		</div>
 	</a>

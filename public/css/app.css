@@ -10934,8 +10934,8 @@ a.text-dark:focus {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: white;
   z-index: 999;
   transition: 1s all;
@@ -11016,6 +11016,10 @@ a {
   color: #fff;
 }
 
+.text-main {
+  color: #393939 !important;
+}
+
 /*	------------	HEADER	------------	*/
 
 header,
@@ -11076,9 +11080,9 @@ footer * {
   margin: auto;
 }
 
-/*	------------	SLIDER	------------	*/
+/*	------------	MAIN SLIDER	------------	*/
 
-.sliders {
+.sliders.homepage {
   text-align: center;
   width: 100%;
   background-color: #000d;
@@ -11088,7 +11092,7 @@ footer * {
   /*.points*/
 }
 
-.sliders .arrow {
+.sliders.homepage .arrow {
   position: absolute;
   top: 50%;
   border-color: #fff;
@@ -11104,22 +11108,22 @@ footer * {
   /*nth-child(2)*/
 }
 
-.sliders .arrow:hover {
+.sliders.homepage .arrow:hover {
   border-top: 10px solid #fff;
   border-right: 10px solid #fff;
 }
 
-.sliders .arrow:first-child {
+.sliders.homepage .arrow:first-child {
   transform: rotate(225deg);
   left: 1vw;
 }
 
-.sliders .arrow:nth-child(2) {
+.sliders.homepage .arrow:nth-child(2) {
   transform: rotate(45deg);
   right: 1vw;
 }
 
-.sliders .window {
+.sliders.homepage .window {
   width: 90vw;
   height: 42vw;
   overflow: hidden;
@@ -11129,7 +11133,7 @@ footer * {
   /*.thumbs*/
 }
 
-.sliders .window .thumbs {
+.sliders.homepage .window .thumbs {
   width: 8000px;
   height: 100%;
   position: absolute;
@@ -11138,13 +11142,13 @@ footer * {
   /*img*/
 }
 
-.sliders .window .thumbs img {
+.sliders.homepage .window .thumbs img {
   width: 90vw;
   height: auto;
   float: left;
 }
 
-.sliders .points {
+.sliders.homepage .points {
   position: absolute;
   text-align: center;
   width: 100%;
@@ -11153,7 +11157,7 @@ footer * {
   /*.active*/
 }
 
-.sliders .points * {
+.sliders.homepage .points * {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -11162,8 +11166,66 @@ footer * {
   margin: 0 15px;
 }
 
-.sliders .points .active {
+.sliders.homepage .points .active {
   background-color: #fff;
+}
+
+/*.sliders*/
+
+/*	------------	PRODUCT SLIDER	------------	*/
+
+.sliders.product {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  /*.arrow*/
+  /*.window*/
+}
+
+.sliders.product .arrow {
+  position: absolute;
+  top: 50%;
+  border-top: 5px solid #444;
+  border-right: 5px solid #444;
+  width: 30px;
+  height: 30px;
+  transition: 0.2s;
+  z-index: 10;
+  /*:hover*/
+  /*first-child*/
+  /*nth-child(2)*/
+}
+
+.sliders.product .arrow:hover {
+  border-top: 10px solid #111;
+  border-right: 10px solid #111;
+}
+
+.sliders.product .arrow:first-child {
+  transform: rotate(225deg);
+  left: -5vw;
+}
+
+.sliders.product .arrow:nth-child(2) {
+  transform: rotate(45deg);
+  right: -5vw;
+}
+
+.sliders.product .window {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  position: relative;
+  /*.thumbs*/
+}
+
+.sliders.product .window .thumbs {
+  width: 8000px;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /*.sliders*/
@@ -11189,15 +11251,15 @@ table {
 
 table .tiles-td {
   position: relative;
-  width: 40vw;
-  height: 20vw;
+  width: 30vw;
+  height: 15vw;
   padding: 3px;
 }
 
 table .tiles-td-sq {
   position: relative;
-  width: 40vw;
-  height: 40vw;
+  width: 30vw;
+  height: 30vw;
   padding: 3px;
 }
 
@@ -11302,6 +11364,7 @@ input.qty {
   height: 375px;
   /*min-width: 300px;*/
   width: 25%;
+  max-width: 265px;
   box-sizing: content-box;
 }
 

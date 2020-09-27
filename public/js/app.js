@@ -37393,6 +37393,16 @@ document.body.onload = function () {
   }, 400);
 };
 
+addEventListener('beforeunload', function () {
+  var preloader = document.getElementById('preloader');
+
+  if (preloader.classList.contains('done')) {
+    preloader.classList.remove('done');
+  }
+
+  ;
+});
+
 /***/ }),
 
 /***/ "./resources/js/slider.js":
@@ -37468,7 +37478,8 @@ if (document.querySelector('.sliders')) {
 
     var parent = document.querySelector('.thumbs');
     var win = document.querySelector('.window');
-    var imgs = document.getElementsByClassName('slider-img');
+    var imgs = document.querySelectorAll('.thumbs>*');
+    console.log(imgs);
     var width = imgs[0].getBoundingClientRect().width;
     var len = imgs.length + 1;
     var shift = 0;
@@ -37476,6 +37487,9 @@ if (document.querySelector('.sliders')) {
     var i = 1;
     var inter;
     parent.append(document.querySelectorAll('.thumbs>*')[0].cloneNode(true));
+    parent.append(document.querySelectorAll('.thumbs>*')[1].cloneNode(true));
+    parent.append(document.querySelectorAll('.thumbs>*')[2].cloneNode(true));
+    parent.append(document.querySelectorAll('.thumbs>*')[3].cloneNode(true));
     var points = document.querySelectorAll('.points>*');
     main();
     var btns = document.querySelectorAll('.sliders .arrow');

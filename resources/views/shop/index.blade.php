@@ -8,7 +8,7 @@
 
 
 <div class="container">
-	<h1 class="text-center">Categories</h1>
+	<h1 class="text-center">Категории</h1>
 	<div class="row justify-content-center">
 		@foreach($categories as $category)
 			@if($category->products->count())
@@ -23,7 +23,7 @@
 @if($products->count())
 	<hr>
 	<div class="container">
-		<h2 class="text-center">Recomended products</h2>
+		<h2 class="text-center">Рекомендованные</h2>
 		<div class="row">
 			@foreach($products as $product)
 				<div class="col-3 text-center mt-3">
@@ -37,7 +37,7 @@
 @if($reviews->count())
 	<hr>
 	<div class="container">
-		<h2 class="text-center">Last reviews</h2>
+		<h2 class="text-center">Последние отзывы</h2>
 		@foreach($reviews as $review)
 			@include('main._review')
 		@endforeach()

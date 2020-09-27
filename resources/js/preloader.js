@@ -1,8 +1,15 @@
 document.body.onload = function(){
 	setTimeout(() => {
-		var preloader = document.getElementById('preloader');
+		let preloader = document.getElementById('preloader');
 		if( !preloader.classList.contains('done') ){ 
 			preloader.classList.add('done');
 		};
 	}, 400);
 }
+
+addEventListener('beforeunload', () => {
+	let preloader = document.getElementById('preloader');
+	if( preloader.classList.contains('done') ){ 
+		preloader.classList.remove('done');
+	};
+})

@@ -7,15 +7,18 @@
 if(document.querySelector('.sliders')){
 let parent  = document.querySelector('.thumbs');
 let win 	= document.querySelector('.window');
-let imgs 	= document.getElementsByClassName('slider-img');
+let imgs 	= document.querySelectorAll('.thumbs>*');
+console.log(imgs)
 let width   = imgs[0].getBoundingClientRect().width;
 let len 	= imgs.length+1;
 let shift   = 0;
 let k 		= 1;
 let i 		= 1;
 let inter;
-
 parent.append(document.querySelectorAll('.thumbs>*')[0].cloneNode(true));
+parent.append(document.querySelectorAll('.thumbs>*')[1].cloneNode(true));
+parent.append(document.querySelectorAll('.thumbs>*')[2].cloneNode(true));
+parent.append(document.querySelectorAll('.thumbs>*')[3].cloneNode(true));
 
 function next(back = false){
 	clearInterval(inter);

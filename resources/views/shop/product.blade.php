@@ -9,7 +9,14 @@
 		<br>
 		<div class="row">
 			<div class="col-6">
-				<img src="{{ $product->img }}" alt="" width="100%">
+				<div class="row">
+					<img src="{{ $product->img }}" alt="" width="100%" class="p-1">
+				</div>
+				<div class="row">
+					@foreach($product->images as $image)
+						<img src="{{$image->img}}" alt="" class="col-2 p-1">
+					@endforeach
+				</div>
 			</div>
 			<div class="col-6">
 				<h1>{{ $product->name }}</h1>
@@ -22,19 +29,39 @@
 					<button class="btn btn-main" style="padding: 5px 30px">В корзину</button>
 				</form>
 				<br>
+				<div class="container">
+					<hr>
+					Категория: {{$product->category->name}}
+					<hr>
+					Метки: 
+						@foreach($product->tags as $tag)
+							<a href="/tag/{{$tag->slug}}" class="text-main">{{$tag->name}}{{$loop->iteration == $product->tags->count()? '' : ','}}</a>
+						@endforeach
+					<hr>
+				</div>
 			</div>
 		</div>
 		<div class="description mt-5">
 			<h2>Описание</h2>
 			<p class="mt-3">{{ $product->description }}</p>
 		</div>
-		<hr>
-		<div class="crossils">
-			<h3>С этим товаром часто покупают</h3>
-			{{-- @foreach($product->recomended => $product)
-				@include('shop._product')
-			@endforeach --}}
-		</div>
+		@if($product->cross_sell)
+			<hr class="mt-5">
+			<div>
+				<h3>С этим товаром часто покупают</h3>
+				<div class="sliders product">
+					<div class="arrow"></div>
+					<div class="arrow"></div>
+					<div class="window">
+						<div class="thumbs row">
+							@foreach($product->cross_sell as $product)
+								@include('shop._product')
+							@endforeach 
+						</div>
+					</div>
+				</div>	
+			</div>
+		@endif
 		<hr>
 		@guest
 		@else

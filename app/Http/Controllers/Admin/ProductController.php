@@ -8,6 +8,7 @@ use App\Product;
 use App\Category;
 use App\Tag;
 use App\TagsProduct;
+use App\Image;
 use App\Http\Requests\StoreProduct;
 
 class ProductController extends Controller{
@@ -17,8 +18,9 @@ class ProductController extends Controller{
     }
     public function create(){
         $categories = Category::all();
+        $products   = Product::all();
         $tags       = Tag::all();
-        return view('admin.product.create', compact('categories', 'tags') );
+        return view('admin.product.create', compact('categories', 'products', 'tags') );
     }
     public function store(StoreProduct $request){
         // $validatedData = $request->validate([
@@ -34,12 +36,29 @@ class ProductController extends Controller{
         $product->category_id = $request->category;
         $product->price       = $request->price;
         $product->recomended  = $request->recomended ?? 0;
+        $product->upsell      = $request->upsell;
+        $product->cross_sell  = $request->cross_sell;
 
         $file = $request->file('img');
         if($file){
             $fName = $file->getClientOriginalName();
             $file->move( public_path('uploads'), $fName );
             $product->img = '/uploads/'.$fName;
+        }
+
+        $files = $request->file('images');
+        if($files){
+            $imgs = $product->images->count();
+            foreach($files as $file){
+                if($imgs++ >= 9){break;}
+                if(in_array($file, $product->images->pluck('img')->toArray() )){continue;}
+                $fName = $file->getClientOriginalName();
+                $file->move( public_path('uploads'), $fName );
+                $image = new Image();
+                $image->img = '/uploads/'.$fName;
+                $image->product_id = $product->id;
+                $image->save();
+            } 
         }
         
         $product->save();
@@ -52,9 +71,10 @@ class ProductController extends Controller{
     }
     public function edit($id){
         $product    = Product::findOrFail($id);
+        $products   = Product::all();
         $categories = Category::all();
         $tags       = Tag::all();
-        return view('admin.product.edit', compact('product', 'categories', 'tags'));
+        return view('admin.product.edit', compact('product', 'categories', 'tags', 'products'));
     }
     public function update(Request $request, $id){
         $product              = Product::findOrFail($id);
@@ -65,13 +85,30 @@ class ProductController extends Controller{
         $product->price       = $request->price;
         $product->recomended  = $request->recomended ?? 0;
 
+        $product->upsell      = $request->upsell;
+        $product->cross_sell  = $request->cross_sell;
+
         $file = $request->file('img');
         if($file){
             $fName = $file->getClientOriginalName();
             $file->move( public_path('uploads'), $fName );
             $product->img = '/uploads/'.$fName;
         }
-        
+
+        $files = $request->file('images');
+        if($files){
+            $imgs = $product->images->count();
+            foreach($files as $file){
+                if($imgs++ >= 9){break;}
+                $fName = $file->getClientOriginalName();
+                $file->move( public_path('uploads'), $fName );
+                $image = new Image();
+                $image->img = '/uploads/'.$fName;
+                $image->product_id = $product->id;
+                $image->save();
+            } 
+        }
+
         $product->save();
         $product->tags()->sync($request->tags);
         return redirect('/admin/product')->with('success', 'Product "' . $product->name . '" edited!');

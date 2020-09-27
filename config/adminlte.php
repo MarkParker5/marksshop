@@ -250,7 +250,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text'        => 'Продукты',
+            'text'        => 'Товары',
             'url'         => 'admin/product',
             'icon'        => 'far fa-fw fa-file',
             'label'       => null,

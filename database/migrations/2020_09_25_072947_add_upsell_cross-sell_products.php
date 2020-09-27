@@ -15,7 +15,7 @@ class AddUpsellCrossSellProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->json('upsell')->nullable();
-            $table->json('cross-sell')->nullable();
+            $table->json('cross_sell')->nullable();
         });
     }
 

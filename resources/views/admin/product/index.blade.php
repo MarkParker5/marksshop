@@ -39,7 +39,7 @@
                 <a href="/admin/product/{{$product->id}}/edit" class="btn btn-link text-warning">
                   Редактировать
                 </a>
-                <form action="/admin/product/{{$product->id}}" method="POST">
+                <form action="/admin/product/{{$product->id}}" method="POST" class="mt-0">
                   @csrf @method('DELETE') 
                   <button class="btn btn-link text-danger">Удалить</i></button>
                 </form>    

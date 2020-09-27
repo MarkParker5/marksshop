@@ -9,7 +9,7 @@
 @include('admin._messages')
 
 {{--		 SLIDER			--}}
-<div class="sliders">
+<div class="sliders homepage">
 	<div class="arrow"></div>
 	<div class="arrow"></div>
 	<div class="window">

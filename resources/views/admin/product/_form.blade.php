@@ -45,15 +45,31 @@
 <div class="form-group">
     <label for="img">Изображение</label>
     <input type="file" class="form-control @error('img') is-invalid @enderror" id="img" name='img'>
-    
-    @if(isset($product))
-        <img src="{{ $product->img ?? '/img/nophoto.png'}}" alt="" width="100px">
-    @endif
 
     @error('img')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
+<div class="row mb-5">
+    @if(isset($product))
+        <img src="{{ $product->img ?? '/img/nophoto.png'}}" alt="" class="col-4">
+    @endif
+</div>
+<div class="form-group">
+    <label for="images">Дополнительные изображения</label>
+    <input multiple="multiple" type="file" class="form-control @error('images') is-invalid @enderror" id="images" name='images[]'>
+
+    @error('img')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+@if(isset($product))
+    <div class="row mb-5">
+        @foreach($product->images as $image)
+            <img src="{{ $image->img ?? '/img/nophoto.png'}}" alt="" class="col-4 mt-2">
+        @endforeach
+    </div>
+@endif
 <div class="form-group">
     <label for="tags">Теги</label>
     <select class="form-control @error('tags') is-invalid @enderror" id="tags" name='tags[]' multiple="multiple" style="height:120pt">
@@ -62,6 +78,28 @@
         @endforeach
     </select>
     @error('category')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label for="cross_sell[]">Сопутствующие</label>
+    <select class="form-control @error('cross_sell') is-invalid @enderror" id="cross_sell[]" name='cross_sell[]' multiple="multiple">
+        @foreach ($products as $product)
+            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->crossSell) ? 'selected' : ''}}>{{$product->name}}</option>
+        @endforeach
+    </select>
+    @error('cross_sell')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+<div class="form-group">
+    <label for="upsell[]">Апсейлы</label>
+    <select class="form-control @error('upsell') is-invalid @enderror" id="upsell[]" name='upsell[]' multiple="multiple">
+        @foreach ($products as $product)
+            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->upsell) ? 'selected' : ''}}>{{$product->name}}</option>
+        @endforeach
+    </select>
+    @error('upsell')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
