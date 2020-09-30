@@ -7,8 +7,7 @@
 if(document.querySelector('.sliders')){
 let parent  = document.querySelector('.thumbs');
 let win 	= document.querySelector('.window');
-let imgs 	= document.querySelectorAll('.thumbs>*');
-console.log(imgs)
+let imgs 	= document.querySelectorAll('.thumbs>a>*');
 let width   = imgs[0].getBoundingClientRect().width;
 let len 	= imgs.length+1;
 let shift   = 0;

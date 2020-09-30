@@ -37576,8 +37576,7 @@ if (document.querySelector('.sliders')) {
 
     var parent = document.querySelector('.thumbs');
     var win = document.querySelector('.window');
-    var imgs = document.querySelectorAll('.thumbs>*');
-    console.log(imgs);
+    var imgs = document.querySelectorAll('.thumbs>a>*');
     var width = imgs[0].getBoundingClientRect().width;
     var len = imgs.length + 1;
     var shift = 0;
