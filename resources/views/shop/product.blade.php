@@ -9,10 +9,10 @@
 		<br>
 		<div class="row">
 			<div class="col-6">
-				<div class="row">
+				<div class="row big-img">
 					<img src="{{ $product->img }}" alt="" width="100%" class="p-1">
 				</div>
-				<div class="row">
+				<div class="row small-images">
 					@foreach($product->images as $image)
 						<img src="{{$image->img}}" alt="" class="col-2 p-1">
 					@endforeach
@@ -45,7 +45,7 @@
 			<h2>Описание</h2>
 			<p class="mt-3">{{ $product->description }}</p>
 		</div>
-		@if($product->cross_sell)
+		@if($product->crossSell->count())
 			<hr class="mt-5">
 			<div>
 				<h3>С этим товаром часто покупают</h3>
@@ -54,7 +54,7 @@
 					<div class="arrow"></div>
 					<div class="window">
 						<div class="thumbs row">
-							@foreach($product->cross_sell as $product)
+							@foreach($product->crossSell as $product)
 								@include('shop._product')
 							@endforeach 
 						</div>

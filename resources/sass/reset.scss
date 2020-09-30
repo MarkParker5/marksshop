@@ -15,12 +15,17 @@ a{
 /*	------------	MAIN STYLES	------------	*/
 
 .btn-main{
-	border: 2px solid black;
+	border: 2px solid #313131;
 	width: auto;
 	height: 40px;
 	padding: 6px 15px!important;
 	border-radius: 0;
 	font-weight: bolder;
+
+	&:hover{
+		color: #fff;
+		background-color: #313131;
+	}
 }
 .btn-second{
 	background-color: #999fa3;

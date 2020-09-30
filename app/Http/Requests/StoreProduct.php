@@ -26,7 +26,7 @@ class StoreProduct extends FormRequest
         return [
             'name'          => 'required|unique:products|max:64',
             'slug'          => 'nullable|unique:products|max:128',
-            'description'   => 'nullable|max:256',
+            'description'   => 'nullable|',
             'category'      => 'required|in:'.implode(',',\App\Category::all()->pluck('id')->toArray()),
             'img'           => 'nullable|mimes:jpeg,png,bmp,gih',
             'price'         => 'required|numeric',

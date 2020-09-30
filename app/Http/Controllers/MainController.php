@@ -44,7 +44,7 @@ class MainController extends Controller{
     }
     public function product(string $slug){
         $product = Product::firstWhere('slug', $slug);
-        $reviews = Review::where('product_id', $product->id)->orderBy('updated_at', 'desc')->get(); 
+        $reviews = Review::where('product_id', $product->id)->orderBy('updated_at', 'desc')->get();
         return view('shop.product', compact('product', 'reviews') );
     }
     public function getReview(Request $request){

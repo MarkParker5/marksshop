@@ -28,9 +28,11 @@ class CartService{
         Session::put('totalSum', $summa);
     }
 
-    public static function clear(){
+    public static function clear($order_id){
+        Session::put('orderId', $order_id);
     	Session::forget('cart');
     	Session::forget('totalSum');
+        Session::save();
     }
 
     public static function delete($id){

@@ -34,7 +34,17 @@ Route::post('/cart/clear', 		'CartController@clear');
 Route::post('/cart/delete', 	'CartController@delete');
 
 Route::get('/checkout', 		'CartController@checkout');
-Route::get('/end-checkout', 	'CartController@endCheckout');
+Route::get('/delivery', 		'CartController@delivery');
+Route::get('/end-checkout', 	function(){ return redirect('/');});
+
+Route::post('/success-payment', function(Request $request){
+									Session::save(); 
+									return redirect('/success-payment');
+								} );
+Route::get('/success-payment',  'CartController@successPayment');
+
+Route::post('/end-checkout', 	'CartController@endCheckout');
+Route::post('/get-warehouses', 	'CartController@getWarehouses');
 
 //Admin
 Route::group([

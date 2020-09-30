@@ -85,7 +85,7 @@
     <label for="cross_sell[]">Сопутствующие</label>
     <select class="form-control @error('cross_sell') is-invalid @enderror" id="cross_sell[]" name='cross_sell[]' multiple="multiple">
         @foreach ($products as $product)
-            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->crossSell) ? 'selected' : ''}}>{{$product->name}}</option>
+            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->crossSell->pluck('id')->toArray()) ? 'selected' : ''}}>{{$product->name}}</option>
         @endforeach
     </select>
     @error('cross_sell')
@@ -96,7 +96,7 @@
     <label for="upsell[]">Апсейлы</label>
     <select class="form-control @error('upsell') is-invalid @enderror" id="upsell[]" name='upsell[]' multiple="multiple">
         @foreach ($products as $product)
-            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->upsell) ? 'selected' : ''}}>{{$product->name}}</option>
+            <option value="{{$product->id}}" {{isset($product) && in_array($product->id, $product->upsell->pluck('id')->toArray()) ? 'selected' : ''}}>{{$product->name}}</option>
         @endforeach
     </select>
     @error('upsell')

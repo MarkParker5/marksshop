@@ -25,10 +25,12 @@ class Product extends Model{
         return $this->belongsToMany(Tag::class, 'tags_products');
     }
     public function getUpsellAttribute(){
-        return $this->attributes['upsell'] ?? [];
+        $products = Product::whereIn('id', json_decode($this->attributes['upsell']) ?? [] )->get();
+        return $products;
     }
     public function getCrossSellAttribute(){
-        return $this->attributes['cross_sell'] ?? [];
+        $products = Product::whereIn('id', json_decode($this->attributes['cross_sell']) ?? [] )->get();
+        return $products;
     }
     public function images(){
         return $this->hasMany('App\Image');

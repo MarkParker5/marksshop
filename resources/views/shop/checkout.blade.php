@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('mainlayouts.main')
 
 @section('title')
 	Оформление заказа
@@ -7,17 +7,24 @@
 @section('content')
 	<div class="container">
 
-		<h1>Checkout</h1>
+		<h1>Оформление заказа</h1>
 		@include('shop._cart')
 	
 
-		@guest
-			<p> <a href="{{ route('login') }}">{{ __('Login') }}</a> or <a href="{{ route('register') }}">{{ __('Register') }}</a> </p>
-		@else
+		@if(session('cart'))
 			<div class="text-right">
-				<a class="btn btn-primary" href="/end-checkout">Next</a>
+				<a class="btn btn-main" href="/delivery">Оформить заказ</a>
 			</div>
-		@endguest
+			{{-- @guest
+				<p> <a href="{{ route('login') }}">{{ __('Login') }}</a> or <a href="{{ route('register') }}">{{ __('Register') }}</a> </p>
+			@else
+				<div class="text-right">
+					<a class="btn btn-main" href="/delivery">Оформить заказ</a>
+				</div>
+			@endguest --}}
+		@else
+			<p class="text-center mb-5"><a href="/shop"><big>В магазин</big></a></p>
+		@endif
 
 	</div>
 @endsection

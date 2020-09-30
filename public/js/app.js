@@ -37283,6 +37283,10 @@ __webpack_require__(/*! ./cart */ "./resources/js/cart.js");
 
 __webpack_require__(/*! ./slider */ "./resources/js/slider.js");
 
+__webpack_require__(/*! ./product */ "./resources/js/product.js");
+
+__webpack_require__(/*! ./delivery */ "./resources/js/delivery.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37374,6 +37378,69 @@ document.body.addEventListener('submit', function (e) {
 
 /***/ }),
 
+/***/ "./resources/js/delivery.js":
+/*!**********************************!*\
+  !*** ./resources/js/delivery.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var form = document.forms.delivery;
+
+if (form) {
+  var options = document.querySelectorAll('form#delivery #city>*');
+  document.querySelector('form#delivery input[name="city"]').addEventListener('change', function (e) {
+    var _iterator = _createForOfIteratorHelper(options),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        opt = _step.value;
+
+        if (opt.value == e.target.value) {
+          form['city_id'].value = opt.getAttribute('data-value');
+          break;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    document.querySelector('form#delivery input[name="post"]').disabled = true;
+    document.querySelector('form#delivery input[name="post"]').placeholder = "Загрузка отделений...";
+    var data = new FormData(form);
+    axios.post('/get-warehouses', data).then(function (responce) {
+      updateWarehouses(responce.data);
+    });
+  });
+  var next = form.next;
+  var liqpay = document.querySelector('#liqpay');
+  next.addEventListener('click', function (e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    axios.post('/end-checkout', data).then(function (responce) {
+      liqpay.innerHTML = responce.data;
+      document.querySelector('#liqpay>*').submit();
+    });
+  });
+}
+
+function updateWarehouses(html) {
+  document.querySelector('form#delivery #post').innerHTML = html;
+  document.querySelector('form#delivery input[name="post"]').placeholder = "Отделение новой почты, №*";
+  document.querySelector('form#delivery input[name="post"]').disabled = false;
+}
+
+/***/ }),
+
 /***/ "./resources/js/preloader.js":
 /*!***********************************!*\
   !*** ./resources/js/preloader.js ***!
@@ -37402,6 +37469,37 @@ addEventListener('beforeunload', function () {
 
   ;
 });
+
+/***/ }),
+
+/***/ "./resources/js/product.js":
+/*!*********************************!*\
+  !*** ./resources/js/product.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var big = document.querySelector(".big-img>*");
+var images = document.querySelectorAll(".small-images>*");
+
+if (big && images) {
+  var _loop = function _loop(i) {
+    images[i].addEventListener('click', function () {
+      for (var j = 0; j < images.length; j++) {
+        if (images[j].classList.contains('active')) {
+          images[j].classList.remove('active');
+        }
+      }
+
+      images[i].classList.add('active');
+      big.src = images[i].src;
+    });
+  };
+
+  for (var i = 0; i < images.length; i++) {
+    _loop(i);
+  }
+}
 
 /***/ }),
 

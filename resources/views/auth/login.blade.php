@@ -58,7 +58,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-main">
                                     {{ __('Вход') }}
                                 </button>
 
@@ -73,7 +73,7 @@
                 </div>
                 <div class="card-footer text-center">
                     {{ __('Еще нет аккаунта? ') }}
-                    <a href="/register" class="btn btn-primary">
+                    <a href="/register" class="btn btn-main">
                         {{ __('Создать аккаунт') }}
                     </a>
                 </div>

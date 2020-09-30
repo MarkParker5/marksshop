@@ -1,5 +1,4 @@
-<h1>New order #{{$order->id}}</h1>
-User: {{$order->user->name}} <br>
+<h1>Ваш заказ #{{$order->id}} принят</h1>
 TotalSum: {{$order->total_sum}}
 
 <hr>
@@ -15,7 +14,7 @@ TotalSum: {{$order->total_sum}}
 		</tr>
 	</thead>
 	<tbody>
-		@foreach(session('cart') as $product)
+		@foreach($order->items as $product)
 			<tr>
 				<td><img src="{{env('APP_URL')}}/{{$product['img']}}" alt="{{$product['name']}}" style="width: 70px"></td>
 				<td>{{$product['name']}}</td>
@@ -27,7 +26,7 @@ TotalSum: {{$order->total_sum}}
 		<tfoot>
            	<tr>
                	<td colspan="3" class="text-right">Total Sum</td>
-               	<td colspan="2">{{session('totalSum')}}</td>
+               	<td colspan="2">{{$order->total_sum}}</td>
            	</tr>
        	</tfoot>
 	</tbody>

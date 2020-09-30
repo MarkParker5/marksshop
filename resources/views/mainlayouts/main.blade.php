@@ -105,9 +105,9 @@
             @include('shop._cart')
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-            <a class="btn btn-primary" href="/checkout">Оформить заказ</a>
-            <button type="button" class="btn btn-danger clear-cart">Очистить корзину</button>
+            <button type="button" class="btn btn-link text-secondary" data-dismiss="modal">Закрыть</button>
+            <button type="button" class="btn btn-link text-danger clear-cart">Очистить корзину</button>
+            <a class="btn btn-main" href="/checkout">Оформить заказ</a>
           </div>
         </div>
       </div>

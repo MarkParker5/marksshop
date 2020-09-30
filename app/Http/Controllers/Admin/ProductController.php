@@ -45,6 +45,7 @@ class ProductController extends Controller{
             $file->move( public_path('uploads'), $fName );
             $product->img = '/uploads/'.$fName;
         }
+        $product->save();
 
         $files = $request->file('images');
         if($files){
@@ -52,7 +53,7 @@ class ProductController extends Controller{
             foreach($files as $file){
                 if($imgs++ >= 9){break;}
                 if(in_array($file, $product->images->pluck('img')->toArray() )){continue;}
-                $fName = $file->getClientOriginalName();
+                $fName = 'products/'.$product->slug.'/'.$file->getClientOriginalName();
                 $file->move( public_path('uploads'), $fName );
                 $image = new Image();
                 $image->img = '/uploads/'.$fName;
@@ -90,7 +91,7 @@ class ProductController extends Controller{
 
         $file = $request->file('img');
         if($file){
-            $fName = $file->getClientOriginalName();
+            $fName = time().$file->getClientOriginalName();
             $file->move( public_path('uploads'), $fName );
             $product->img = '/uploads/'.$fName;
         }
@@ -100,7 +101,7 @@ class ProductController extends Controller{
             $imgs = $product->images->count();
             foreach($files as $file){
                 if($imgs++ >= 9){break;}
-                $fName = $file->getClientOriginalName();
+                $fName = $product->slug.'-'.$file->getClientOriginalName();
                 $file->move( public_path('uploads'), $fName );
                 $image = new Image();
                 $image->img = '/uploads/'.$fName;

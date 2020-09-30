@@ -8,13 +8,19 @@ input.qty{
 	font-size: 1.1em;
 	padding-left: 10px;
 }
+.small-images>*{
+	filter: saturate(30%) opacity(50%);
+}
+.small-images>.active, .small-images>*:hover{
+	filter: saturate(100%)  opacity(100%);
+}
 
 
 /*	------------	PRODUCT CARD	------------	*/
 
 .product-card{
 	background-color: #fff;
-	height: 375px;
+	height: 400px;
 	/*min-width: 300px;*/
 	width: 25%;
 	max-width: 265px;
@@ -24,16 +30,15 @@ input.qty{
 		width: 100%;
 		height: 100%;
 		.image{
-			height: 75%;
+			height: 65%;
 			width: 100%;
 			overflow: hidden;
 			background-size: cover;
 			background-position: center center;
-			border-bottom: 1px solid #aaa;
 		}
 		.info{
 			width: 100%;
-			height: 25%;
+			height: 35%;
 			position: relative;
 
 			.text{
@@ -41,6 +46,10 @@ input.qty{
 				position: absolute;
 				top: 50%;
 				left: 50%;
+
+				h4{
+					font-size: 1.3em;
+				}
 			}
 		}
 	}

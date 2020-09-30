@@ -15,7 +15,9 @@
         "jeroennoten/laravel-adminlte": "^3.4",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.1"
+        "laravel/ui": "^2.1",
+        "liqpay/liqpay": "^1.2",
+        "lis-dev/nova-poshta-api-2": "^0.1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
